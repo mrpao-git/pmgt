@@ -6,4 +6,5 @@ if __name__ == "__main__":
     accounts = Accounts()
     account = accounts.who('hana292sale')
 
-    print(account)
+    if account is not None:
+        print(account.get('Key'))

@@ -1,5 +1,4 @@
 import mysql.connector
-import json
 
 from typing import Any
 from mysql.connector import Error
@@ -15,24 +14,32 @@ class TableFailure(Error):
     pass
 
 class Object:
-    def __init__(self) :
+    def __init__(self) -> None:
         self.__name__ = self.__class__.__name__
 
     def __str__(self) -> str:
-        properties = [property for property in self.__dict__ if property.startswith('_')]
-        return json.dumps([property.__str__() for property in properties], indent=4)
+        return self.__name__
 
 class Cell(Object):
     _column: str | None = None
     _value: str | int | None = None
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
+
+    def __str__(self) -> str:
+        return str(self._value)
 
 class Row(Object):
     _cells: list[Cell] = []
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
+    def get(self, name: str) -> Cell | None:
+        for cell in self._cells:
+            if cell._column == name:
+                return cell
+        return None
+        
     def hasAccount(self, account: str) -> bool:
         for cell in self._cells:
             if cell._column == 'Account' and cell._value == account:
@@ -41,7 +48,7 @@ class Row(Object):
 
 class Table(Object):
     _rows: list[Row] = []
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     def who(self, account: str) -> Row | None:

@@ -3,8 +3,7 @@ import backend
 @backend.table
 class Accounts(backend.Table):
     def __init__(self) -> None:
-        super().__init__()
-        print(self._rows)
+        pass
 
 @backend.table
 class Profiles(backend.Table):
