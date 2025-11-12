@@ -1,5 +1,5 @@
-# Price Match Guarantee - Tracker
-A Chrome Extension + Web App for **Price Match Guarantee Tracking**
+# Price Match Guarantee - Output Tracker
+A Chrome Extension + Web App for **Price Match Guarantee Output Tracking**
 
 ## 📌 Overview  
 `pmgt` is a dual-component project:  
